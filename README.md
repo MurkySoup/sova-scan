@@ -82,7 +82,7 @@ Some effort has been made to cope with some of the more common file naming silli
 
 Running this script against network filesystems means living with a heavily I/O-bound process. But for use on local file systems with far greater bandwidth and possibly multi-core CPU's available, it becomes clear that there's room for significant improvement.
 
-If you're clever, this script can be adapted for use with GNU Parallel or similar tools. Note: Please don't try this with 'xargs'-- it's fragile and lacks a number of important features.
+If you're clever, this script can be adapted for use with GNU Parallel or similar tools. Note: Please don't try this with 'xargs'-- it's fragile and lacks a number of important features. Check out the 'parallel' directory of this repo for proof-of-concept parallelization, but you'll need GNU Parallel (https://www.gnu.org/software/parallel/) to use it.
 
 If you're especially clever, you could try adapting the concepts in this script to some flavor of heuristic analysis or machine learning techniques? If you go down that road, be sure to avail yourself of tools like CUDA, OpenCL and/or OpenMT in conjection with platforms like Caffe, TensorFlow or ArrayFire. I would also suggest you read up on how the Bad Guys (tm) have been trying to defeat such analysis; mostly by tricking AI's with intentionally bad or misleading data for the purpose of subverting legitimate training models.
 
