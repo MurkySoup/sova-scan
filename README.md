@@ -16,6 +16,19 @@ This script shows how difficult it can be fully automated this kind of process--
 
 ## Getting Started
 
+Clone this repo and enter it's working directory:
+```
+$ git clone https://github.com/armadillo-field-testing/sova-scan.git
+$ cd ./sova-scan
+```
+
+A copy of 'ent' has been included for ease-of-use. Build like so:
+```
+$ cd ./ent
+$ make clean && make
+```
+The resulting binary can be copies to some location within the shell's executable path. There is no formal installation process for this simple program.
+
 To kick off a quick scan and drop the results to a timestamped file, try something like:
 
 ```
@@ -34,11 +47,11 @@ You will also need a MySQL installation into which you may write the contents of
 
 ## Installing
 
-As this just a shell script, there is no installation process, per se. However, super-user privileges are needed in order to side-step permissions issues.
+As this just a shell script and hence there is no installation process. However, super-user privileges are needed in order to side-step permissions issues.
 
 ## How to Analyze Results
 
-Once imported, sifting through SOVA-SCAN results is merely MySQL queries.
+Once imported, sifting through SOVA-SCAN results are merely MySQL queries.
 
 Intentionally obfuscated or compressed code (not all of which is malicious) shows some distinct patterns:
 
