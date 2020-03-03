@@ -32,10 +32,12 @@ The resulting binary can be copies to some location within the shell's executabl
 To kick off a quick scan and drop the results to a timestamped file, try something like:
 
 ```
-$ ./sova-scan.sh -d /opt/gmti > $(hostname).$(date "+%Y%m%d.%H%M%S").sql
+$ ./sova-scan.sh -d /target/directory > $(hostname).$(date "+%Y%m%d.%H%M%S").sql
 ```
 
 This will create a MySQL flat file with database and table schema attached. You may, of course, alter the database and table names to fit your own purposes with a simple script edit.
+
+There is a parallelized version of this script available, but this is intended for use on really fast local file systems. However, as the scanning process is still ultimately an I/O bound task, the benefits of parallelizing this use case is limited.
 
 ## Prerequisites
 
