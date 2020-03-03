@@ -88,7 +88,7 @@ If you're especially clever, you could try adapting the concepts in this script 
 
 ## Author
 
-**Rick Pelletier** - rpelletier@gannett.com
+**Rick Pelletier** - [Gannett Co., Inc. (USA Today Network)](https://www.usatoday.com/)
 
 ## License
 
