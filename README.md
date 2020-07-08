@@ -1,4 +1,4 @@
-# SOVA-SCAN - Ofuscated code detection script.
+# SOVA-SCAN - Obfuscated code detection script.
 
 This Bash script scans a target filesystem and builds a database of files with unusual properties that might indicate the presence of obfuscated code. Output is in the form of a MySQL flatfile for easy import and analysis. This script DOES NOT definitively identify or classify anything-- it's strictly an intelligence-gathering tool.
 
