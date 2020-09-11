@@ -2,6 +2,8 @@
 
 This Bash script scans a target filesystem and builds a database of files with unusual properties that might indicate the presence of obfuscated code. Output is in the form of a MySQL flatfile for easy import and analysis. This script DOES NOT definitively identify or classify anything-- it's strictly an intelligence-gathering tool.
 
+The original intent was to help located heavily obfuscated PHP scripts, as normal scanners would overlook them with annoying consistency.
+
 This script uses system utilities that should be available on virtually any modern Linux distro and  should be relatively easy to adapt for use on *BSD or other Unix-like systems.
 
 ## Some Things To Know
@@ -55,7 +57,7 @@ As this just a shell script and hence there is no installation process. However,
 
 Once imported, sifting through SOVA-SCAN results are merely MySQL queries.
 
-Intentionally obfuscated or compressed code (not all of which is malicious) shows some distinct patterns:
+Intentionally obfuscated and/or compressed code (not all of which is malicious) shows some distinct patterns:
 
 * 'l_string' values that are over 1000 (often over 10000). There are valid use cases for very long, unbroken strings, but being suspicious of such things is a good idea.
 * 'entropy' values for most source code and text files are typically around 5.2. Entropy values above 5.7 or below 3.8 should definitely be regarded with suspicion and examined.
@@ -68,7 +70,7 @@ Example query via MySQL command-line interface:
 ```
 select record_id,host,file_path,l_string,entropy
   from sova_scan.files
-  where (entropy > 3.8 and entropy < 5.7)
+  where (entropy < 3.8 and entropy > 5.7)
     and l_string > 1024
     and (file_path like "%.php" or file_path like "%.js" or file_path like "%.py")
     and host like "%example.com%";

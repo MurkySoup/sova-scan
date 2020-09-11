@@ -26,9 +26,10 @@ table="files"
 
 function display_header () {
   # sql import header info (customize as needed)
-  echo "CREATE DATABASE IF NOT EXISTS ${db};"
+  echo "SET NAMES utf8mb4;"
+  echo "DROP DATABASE IF EXISTS ${db};"
+  echo "CREATE DATABASE IF NOT EXISTS ${db} CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;"
   echo "USE ${db};"
-  # echo "TRUNCATE TABLE ${db}.${table};"
   echo "CREATE TABLE IF NOT EXISTS ${db}.${table} ("
   echo "  record_id  int(11) NOT NULL AUTO_INCREMENT,"
   echo "  scan_date  datetime DEFAULT NULL,"
@@ -44,14 +45,14 @@ function display_header () {
   echo "  l_string   int(11) DEFAULT NULL,"
   echo "  entropy    float(14,13) DEFAULT NULL,"
   echo "  PRIMARY KEY (record_id)"
-  echo ") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;"
-  echo "TRUNCATE TABLE ${db}.${table};" # this can be commented out if you need to retain existing information in this table
+  echo ") ENGINE=MyISAM AUTO_INCREMENT=1;"
+  #echo "TRUNCATE TABLE ${db}.${table};" # this can be commented out if you need to retain existing information in this table
   echo "LOCK TABLES ${db}.${table} WRITE;"
-  echo "ALTER TABLE ${db}.${table} DISABLE KEYS;"
+  #echo "ALTER TABLE ${db}.${table} DISABLE KEYS;"
 }
 
 function display_footer () {
-  echo "ALTER TABLE ${db}.${table} ENABLE KEYS;"
+  #echo "ALTER TABLE ${db}.${table} ENABLE KEYS;"
   echo "UNLOCK TABLES;"
 }
 
@@ -93,7 +94,7 @@ else
 
       # search restricted to lucrative targets. use 'clamav' and/or 'maldet' for blanket malware scans
       # the following regex searches for python, perl, ruby php, java/class and ecma/javascripts, plus various flavors of html files
-      find ${target_dir} -type f | grep -P '(?i)\.([a-z]{0,}htm[l]{0,}|pl[cd]{0,}|php[1234567890]{0,}|py|rb|js|jsp|jquery|javascript|java)$' | while IFS=$'\n' read -r k
+      find ${target_dir} -type f | grep -P '(?i)\.([a-z]{0,}htm[l]{0,}|pl[cd]{0,}|php[1234567890]{0,}|py|rb|js|jsp|jquery|javascript|java|sh)$' | while IFS=$'\n' read -r k
       do
         if [ -f "${k}" ]
         then
