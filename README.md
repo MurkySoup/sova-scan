@@ -20,7 +20,7 @@ This script shows how difficult it can be fully automated this kind of process--
 
 Clone this repo and enter it's working directory:
 ```
-$ git clone https://github.com/armadillo-field-testing/sova-scan.git
+$ git clone https://github.com/MurkySoup/sova-scan.git
 $ cd ./sova-scan
 ```
 
